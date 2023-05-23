@@ -1,0 +1,15 @@
+header {
+  background: #e4d3c1;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex-flow: row wrap;
+}
+
+div.logo {
+  width: 20%;
+  img {
+    width: 200px;
+    height: 100px;
+  }
+}
