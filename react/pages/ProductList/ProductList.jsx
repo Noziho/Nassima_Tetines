@@ -4,6 +4,7 @@ import {Footer} from "../../components/Footer/Footer";
 import {useEffect, useState} from "react";
 import {Product} from "../../components/Product/Product";
 import {Categories} from "../../components/Categories/Categories";
+import {Cart} from "../../components/Cart/Cart";
 
 export const ProductList = () => {
     const [products, setProducts] = useState([]);
@@ -17,11 +18,12 @@ export const ProductList = () => {
             .catch(() => console.log('Erreur lors de la récupération des produits'));
     }, []);
 
-    const [category, setCategory] = useState(0);
+    const [category, setCategory] = useState(1);
 
     return (
         <>
             <Header/>
+            <Cart />
             <Categories setCategory={setCategory} />
             <div className='productList'>
                 {
