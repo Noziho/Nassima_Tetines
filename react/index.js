@@ -4,7 +4,7 @@ import {Home} from './pages/Home';
 import {Register} from "./pages/user/Register";
 import {Login} from "./pages/user/Login";
 import {RouteNotFound} from "./components/RouteNotFound/RouteNotFound";
-import {ProductList} from "./components/ProductList/ProductList";
+import {ProductList} from "./pages/ProductList/ProductList";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 

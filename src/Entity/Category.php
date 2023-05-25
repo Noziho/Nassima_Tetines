@@ -18,9 +18,6 @@ class Category
     #[ORM\Column(length: 50)]
     private ?string $name = null;
 
-    #[ORM\OneToMany(mappedBy: 'category', targetEntity: Product::class)]
-    private Collection $products;
-
     public function __construct()
     {
         $this->products = new ArrayCollection();
@@ -43,13 +40,6 @@ class Category
         return $this;
     }
 
-    /**
-     * @return Collection<int, Product>
-     */
-    public function getProducts(): Collection
-    {
-        return $this->products;
-    }
 
     public function addProduct(Product $product): self
     {

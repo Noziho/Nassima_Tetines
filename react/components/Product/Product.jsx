@@ -1,7 +1,12 @@
 import './Product.scss';
 
-export const Product = () => {
+export const Product = ({product}) => {
     return (
-        <h1>Product</h1>
+        <>
+            <div>
+                <h1>{product.name}</h1>
+            </div>
+        </>
+
     )
 }
