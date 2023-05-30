@@ -1,0 +1,29 @@
+.productImg {
+  width: 30rem;
+  min-height: 30rem;
+  max-height: 30rem;
+}
+
+.productPresentation, .product {
+  width: 30rem;
+  min-height: 35rem;
+  max-height: 35rem;
+}
+
+.product {
+  margin: 3.5rem;
+}
+
+.persoButton {
+  width: 100%;
+  button {
+    width: 100%;
+    padding: 0.5rem;
+    border: none;
+    margin-bottom: 2rem;
+  }
+}
+
+.productName {
+  margin-top: 1rem;
+}

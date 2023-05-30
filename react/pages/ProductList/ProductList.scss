@@ -1,7 +1,7 @@
 .containerProductPage {
   margin-top: 5rem;
-  min-height: 70rem;
-  max-height: 70rem;
+  min-height: 100rem;
+  max-height: 100rem;
   display: flex;
   padding: 3rem;
   flex-flow: row wrap;
@@ -16,14 +16,19 @@
   #productListContainer {
     display: flex;
     flex-flow: row wrap;
-    width: 70%;
+    width: 78%;
 
     .productList {
       width: 100%;
-      min-height: 50rem;
+      min-height: 85rem;
+      max-height: 85rem;
       background: #eed6b4;
       margin-left: 5rem;
+      display: flex;
+      flex-flow: row wrap;
+      overflow: scroll ;
     }
+
   }
 
 
