@@ -1,0 +1,30 @@
+.containerProductPage {
+  margin-top: 5rem;
+  min-height: 70rem;
+  max-height: 70rem;
+  display: flex;
+  padding: 3rem;
+  flex-flow: row wrap;
+  margin-left: 3rem;
+
+  #categoriesSelect {
+    width: 100%;
+    margin-left: 5rem;
+    min-height: 1rem;
+  }
+
+  #productListContainer {
+    display: flex;
+    flex-flow: row wrap;
+    width: 70%;
+
+    .productList {
+      width: 100%;
+      min-height: 50rem;
+      background: #eed6b4;
+      margin-left: 5rem;
+    }
+  }
+
+
+}

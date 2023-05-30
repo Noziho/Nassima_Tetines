@@ -23,17 +23,24 @@ export const ProductList = () => {
     return (
         <>
             <Header/>
-            <Cart />
-            <Categories setCategory={setCategory} />
-            <div className='productList'>
-                {
-                    products
-                        .filter(product => category === 0 || product.category.id === category)
-                        .map(product => <Product key={product.id} product={product}/>)
-                }
+            <div className={"containerProductPage"}>
+                <Cart/>
+
+                <div id={"productListContainer"}>
+                    <div id={"categoriesSelect"}>
+                        <Categories setCategory={setCategory}/>
+                    </div>
+                    <div className='productList'>
+                        {
+                            products
+                                .filter(product => category === 0 || product.category.id === category)
+                                .map(product => <Product key={product.id} product={product}/>)
+                        }
+                    </div>
+                </div>
             </div>
 
-            <Footer />
+            <Footer/>
         </>
 
     )
