@@ -5,6 +5,7 @@ import {Register} from "./pages/user/Register";
 import {Login} from "./pages/user/Login";
 import {RouteNotFound} from "./components/RouteNotFound/RouteNotFound";
 import {ProductList} from "./pages/ProductList/ProductList";
+import {ProductDetails} from "./pages/ProductDetails/ProductDetails";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -15,6 +16,7 @@ root.render(
             <Route path="/register" element={<Register/>} />
             <Route path="/login" element={<Login/>} />
             <Route path="/products" element={<ProductList/>} />
+            <Route path="/product/:productID" element={<ProductDetails />} />
 
             <Route path="*" element={<RouteNotFound/>} />
         </Routes>

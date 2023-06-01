@@ -1,4 +1,5 @@
 import './Product.scss';
+import {Link} from "react-router-dom";
 
 export const Product = ({product}) => {
     return (
@@ -10,9 +11,11 @@ export const Product = ({product}) => {
                 </div>
 
                 <div className={"persoButton"}>
-                    <button>
-                        Personnalisez
-                    </button>
+                    <Link to={"/product/" + product.id}>
+                        <button>
+                            Personnalisez
+                        </button>
+                    </Link>
                 </div>
 
             </div>
