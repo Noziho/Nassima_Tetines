@@ -2,7 +2,7 @@ import './Cart.scss';
 import {useEffect, useState} from "react";
 import {CartItem} from '../CartItem/CartItem';
 
-export const Cart = () => {
+export const Cart = ({cartUpdated, setCartUpdated}) => {
 
     const [CartItems, setCartItems] = useState([]);
     useEffect(() => {
@@ -10,11 +10,12 @@ export const Cart = () => {
            const response = await fetch('/api/cart');
            const data = await response.json();
            setCartItems(data.cartItems);
+           setCartUpdated(false);
        }
 
        getCart()
         .catch (() => console.log('Erreur lors de la récupération du panier.'));
-    }, []);
+    }, [cartUpdated]);
 
     return (
         <div className={"cart"}>

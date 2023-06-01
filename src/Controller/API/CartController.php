@@ -34,8 +34,10 @@ class CartController extends AbstractController
         $payload = json_decode($request->getContent(), true);
         if (!isset($payload['product_id']) || !isset($payload['quantity'])) {
             return $this->returnError('Missing parameters');
+            dd("LASAVAAA");
         }
-        $product = $productRepository->find((int)$payload('product_id'));
+
+        $product = $productRepository->find((int)$payload['product_id']);
         $quantity = (int)$payload['quantity'];
         $age = $payload['age'];
         $color = $payload['color'];
@@ -76,7 +78,7 @@ class CartController extends AbstractController
         elseif($cartItem && $cartItem->getQuantity() + $quantity > 10) {
             return $this->returnError('La quantité demandé est supérieure à la quantité maximale');
         }
-        elseif ($cartItem && $cartItem->getQuantity() + $quantity < 10) {
+        elseif($cartItem && $cartItem->getQuantity() + $quantity < 10) {
             $cartItem->setQuantity($cartItem->getQuantity() + $quantity);
         }
         /**

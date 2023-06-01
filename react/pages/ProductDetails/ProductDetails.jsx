@@ -3,9 +3,38 @@ import {Footer} from "../../components/Footer/Footer";
 import {useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
 
-export const ProductDetails = () => {
+export const ProductDetails = ({setCartUpdated}) => {
+
     const [product, setProduct] = useState([]);
+    const [quantity, setQuantity] = useState(1);
+    const [firstname, setFirstname] = useState("");
+    const [mouthPiece, setMouthPiece] = useState("");
+    const [age, setAge] = useState("");
+    const [color, setColor] = useState("");
+    const [fontFamily, setFontFamily] = useState("");
     const params = useParams();
+
+    async function handleClick(productID, quantity, firstname, mouthPiece, age, color, fontFamily) {
+        await fetch('/api/cart/add', {
+            method: "post",
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            "body": JSON.stringify({
+                "product_id" : productID,
+                "quantity" : quantity,
+                "firstname" : firstname,
+                "mouthPiece" : mouthPiece,
+                "age" : age,
+                "color" : color,
+                "fontFamily" : fontFamily
+            })
+
+
+        });
+    }
+
     useEffect(() => {
         async function getProduct() {
             const data = await fetch('/api/product/' + params.productID);
@@ -22,7 +51,7 @@ export const ProductDetails = () => {
                 <h1>{product.name}</h1>
                 <div>
                     <label htmlFor="quantity">Quantité: </label>
-                    <select name="quantity" id="quantity">
+                    <select name="quantity" id="quantity" onChange={(e) => setQuantity(parseInt(e.target.value))}>
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -36,10 +65,10 @@ export const ProductDetails = () => {
                     </select>
 
                     <label htmlFor="first_name">Prénom: </label>
-                    <input id="first_name" name="first_name" type="text" min="2" maxLength="55"/>
+                    <input id="first_name" name="first_name" type="text" min="2" maxLength="55" onChange={(e) => setFirstname(e.target.value)}/>
 
                         <label htmlFor="tips">Embout: </label>
-                        <select name="tips" id="tips">
+                        <select name="tips" id="tips" onChange={(e) => setMouthPiece(e.target.value)}>
                             <option value="Anatomique">Anatomique</option>
                             <option value="Cerise">Cerise</option>
                             <option value="Dynamique">Dynamique</option>
@@ -47,13 +76,13 @@ export const ProductDetails = () => {
                         </select>
 
                     <label htmlFor="age">Age: </label>
-                    <select name="age" id="age">
+                    <select name="age" id="age" onChange={(e) => setAge(e.target.value)}>
                         <option value="6">0/6mois</option>
                         <option value="36">6/36 mois</option>
                     </select>
 
                     <label htmlFor="color"> Couleur: </label>
-                    <select name="color" id="color">
+                    <select name="color" id="color" onChange={(e) => setColor(e.target.value)}>
                         <option className="pink" value="Rose">Rose</option>
                         <option className="violet" value="Violet">Violet</option>
                         <option className="skyBlue" value="Bleu ciel">Bleu ciel</option>
@@ -71,7 +100,7 @@ export const ProductDetails = () => {
                     </select>
 
                     <label htmlFor="font_family"> Police d'écriture: </label>
-                    <select name="font_family" id="font_family">
+                    <select name="font_family" id="font_family" onChange={(e) => setFontFamily(e.target.value)}>
                         <option value="Police d'écriture 1">Écriture 1</option>
                         <option value="Police d'écriture 2">Écriture 2</option>
                         <option value="Police d'écriture 3">Écriture 3</option>
@@ -84,7 +113,7 @@ export const ProductDetails = () => {
                         <option value="Police d'écriture 10">Écriture 10</option>
                     </select>
 
-                    <button>Ajoutez au panier</button>
+                    <button onClick={() => handleClick(product.id, quantity, firstname, mouthPiece, age, color, fontFamily)}>Ajoutez au panier</button>
                 </div>
             </div>
             <Footer />
