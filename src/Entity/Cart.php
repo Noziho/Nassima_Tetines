@@ -57,4 +57,16 @@ class Cart
 
         return $this;
     }
+
+    public function getCartItem (Product $product): ?CartItem
+    {
+        foreach ($this->getCartItems() as $cartItem) {
+            if ($cartItem->getProduct()->getId() === $product->getId()) {
+                return $cartItem;
+            }
+        }
+
+        return null;
+
+    }
 }
