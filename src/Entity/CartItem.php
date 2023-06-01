@@ -23,6 +23,9 @@ class CartItem
     #[ORM\ManyToOne(inversedBy: 'cart_items')]
     private ?Cart $cart = null;
 
+    #[ORM\Column(length: 40)]
+    private ?string $firstName = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -60,6 +63,18 @@ class CartItem
     public function setCart(?Cart $cart): self
     {
         $this->cart = $cart;
+
+        return $this;
+    }
+
+    public function getFirstName(): ?string
+    {
+        return $this->firstName;
+    }
+
+    public function setFirstName(string $firstName): self
+    {
+        $this->firstName = $firstName;
 
         return $this;
     }
