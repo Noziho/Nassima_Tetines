@@ -52,6 +52,7 @@ class CartController extends AbstractController
         $cartItem = $cart->getCartItem($product);
         /**
          * If the cartItem doesn't exist add it with quantity = 1.
+         * TODO => THE BUG WHEN ADDING IS PROBABLY HERE
          */
         if (null === $cartItem) {
             $cartItem = (new CartItem())
