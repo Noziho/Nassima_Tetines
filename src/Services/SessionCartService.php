@@ -32,6 +32,7 @@ class SessionCartService
             $cart = new Cart();
             $this->em->persist($cart);
             $this->em->flush();
+            $this->setCartID($cart);
         }
         else {
             $cart = $this->cartRepository->find($cartId);

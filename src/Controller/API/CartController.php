@@ -65,19 +65,10 @@ class CartController extends AbstractController
                 ->setFirstName($firstname)
             ;
 
-        } elseif ($cartItem && $cartItem->getQuantity() + $quantity <= 0) {
-            $this->entityManager->remove($cartItem);
+        }elseif ($cartItem) {
+            $cartItem->setQuantity($cartItem->getQuantity() + $quantity);
             $this->entityManager->flush();
             $this->entityManager->refresh($cart);
-
-            return $this->json($cart);
-        } /**
-         * Check if the maximal quantity is respected.
-         */
-        elseif ($cartItem && $cartItem->getQuantity() + $quantity > 10) {
-            return $this->returnError('La quantité demandé est supérieure à la quantité maximale');
-        } elseif ($cartItem && $cartItem->getQuantity() + $quantity < 10) {
-            $cartItem->setQuantity($cartItem->getQuantity() + $quantity);
         }
 
         $this->entityManager->persist($cartItem);

@@ -21,7 +21,7 @@ export const Cart = ({cartUpdated, setCartUpdated}) => {
         <div className={"cart"}>
             <h1>Panier</h1>
             <div className={'cartItems'}>
-                {CartItems.map((cartItem) => <CartItem key={cartItem.product.id} product={cartItem.product} />)}
+                {CartItems.map((cartItem) => <CartItem key={cartItem.product_id} product={cartItem.product_id} />)}
             </div>
         </div>
     )

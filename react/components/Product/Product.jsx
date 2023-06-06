@@ -11,6 +11,7 @@ export const Product = ({product}) => {
                 </div>
 
                 <div className={"persoButton"}>
+                    {/* add setCartUpdated on link param maybe ?  */}
                     <Link to={"/product/" + product.id}>
                         <button>
                             Personnalisez
