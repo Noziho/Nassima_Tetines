@@ -50,27 +50,47 @@ class CartController extends AbstractController
 
         $cart = $sessionCartService->getCart();
         $cartItem = $cart->getCartItem($product);
+
         /**
          * If the cartItem doesn't exist add it with quantity = 1.
-         * TODO => THE BUG WHEN ADDING IS PROBABLY HERE
+         * TODO => PROBABLY THE METHOD FOR GETTING CART ITEM BY PRODUCT NEED TO FIX => THE METHOD GET THE FIRST PRODUCT WHO HAVE THE SAME ID NOT ALL SO THE IF CONDITION ALWAYS FALSE
          */
         if (null === $cartItem) {
             $cartItem = (new CartItem())
                 ->setProduct($product)
                 ->setCart($cart)
-                ->setQuantity(1)
+                ->setQuantity($quantity)
                 ->setAge($age)
                 ->setColor($color)
                 ->setFontFamily($fontFamily)
                 ->setMouthPiece($mouthPiece)
-                ->setFirstName($firstname)
-            ;
+                ->setFirstName($firstname);
 
-        }elseif ($cartItem) {
+        }
+
+        if (
+            $cartItem
+            && $cartItem->getAge() === $age
+            && $cartItem->getColor() === $color
+            && $cartItem->getFontFamily() === $fontFamily
+            && $cartItem->getMouthPiece() === $mouthPiece
+            && $cartItem->getFirstName() === $firstname
+        ) {
             $cartItem->setQuantity($cartItem->getQuantity() + $quantity);
             $this->entityManager->flush();
             $this->entityManager->refresh($cart);
+        } else {
+            $cartItem = (new CartItem())
+                ->setProduct($product)
+                ->setCart($cart)
+                ->setQuantity($quantity)
+                ->setAge($age)
+                ->setColor($color)
+                ->setFontFamily($fontFamily)
+                ->setMouthPiece($mouthPiece)
+                ->setFirstName($firstname);
         }
+
 
         $this->entityManager->persist($cartItem);
         $this->entityManager->flush();
