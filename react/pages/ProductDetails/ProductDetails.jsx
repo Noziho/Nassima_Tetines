@@ -1,6 +1,6 @@
 import {Header} from "../../components/Header/Header";
 import {Footer} from "../../components/Footer/Footer";
-import {useParams} from "react-router-dom";
+import {redirect, useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
 
 export const ProductDetails = ({setCartUpdated}) => {
@@ -32,7 +32,13 @@ export const ProductDetails = ({setCartUpdated}) => {
             })
 
 
-        });
+        })
+            .then((response) => {
+                if (response.ok) {
+                    location.href = "http://127.0.01:8000/products";
+                }
+            })
+
     }
 
     useEffect(() => {
