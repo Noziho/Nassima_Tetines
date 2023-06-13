@@ -18,7 +18,7 @@ class User
     #[ORM\Column(length: 255)]
     private ?string $email = null;
 
-    #[ORM\Column(length: 60)]
+    #[ORM\Column(length: 255)]
     private ?string $password = null;
 
     #[ORM\Column(length: 100)]
@@ -36,8 +36,8 @@ class User
     #[ORM\Column(length: 100)]
     private ?string $country = null;
 
-    #[ORM\Column(length: 50)]
-    private ?string $role = null;
+    #[ORM\Column]
+    private array $role = [];
 
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Order::class)]
     private Collection $orders;
@@ -136,17 +136,23 @@ class User
         return $this;
     }
 
-    public function getRole(): ?string
+    /**
+     * @return array
+     */
+    public function getRole(): array
     {
         return $this->role;
     }
 
-    public function setRole(string $role): self
+    /**
+     * @param array $role
+     */
+    public function setRole(array $role): self
     {
         $this->role = $role;
-
         return $this;
     }
+
 
     /**
      * @return Collection<int, Order>

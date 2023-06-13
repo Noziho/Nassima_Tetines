@@ -6,6 +6,7 @@ import {Login} from "./pages/user/Login";
 import {RouteNotFound} from "./components/RouteNotFound/RouteNotFound";
 import {ProductList} from "./pages/ProductList/ProductList";
 import {ProductDetails} from "./pages/ProductDetails/ProductDetails";
+import {ProtectedRoutes} from "./components/ProtectedRoutes";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -13,8 +14,12 @@ root.render(
     <BrowserRouter>
         <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/register" element={<Register/>} />
-            <Route path="/login" element={<Login/>} />
+
+            <Route element={<ProtectedRoutes />}>
+                <Route path="/login" element={<Login/>} />
+                <Route path="/register" element={<Register/>} />
+            </Route>
+
             <Route path="/products" element={<ProductList/>} />
             <Route path="/product/:productID" element={<ProductDetails />} />
 

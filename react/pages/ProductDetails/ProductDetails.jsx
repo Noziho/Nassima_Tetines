@@ -71,7 +71,7 @@ export const ProductDetails = ({setCartUpdated}) => {
                     </select>
 
                     <label htmlFor="first_name">Prénom: </label>
-                    <input id="first_name" name="first_name" type="text" min="2" maxLength="55" onChange={(e) => setFirstname(e.target.value)}/>
+                    <input id="first_name" name="first_name" type="text" min={2} maxLength={55} onChange={(e) => setFirstname(e.target.value)}/>
 
                         <label htmlFor="tips">Embout: </label>
                         <select name="tips" id="tips" onChange={(e) => setMouthPiece(e.target.value)}>
