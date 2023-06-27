@@ -1,9 +1,10 @@
 import {Header} from "../../components/Header/Header";
 import {Footer} from "../../components/Footer/Footer";
 import {redirect, useParams} from "react-router-dom";
-import {useEffect, useState} from "react";
+import {useContext, useEffect, useState} from "react";
+import {CartContextProvider} from "../../context/CartContext";
 
-export const ProductDetails = ({setCartUpdated}) => {
+export const ProductDetails = () => {
 
     const [product, setProduct] = useState([]);
     const [quantity, setQuantity] = useState(1);
@@ -13,6 +14,7 @@ export const ProductDetails = ({setCartUpdated}) => {
     const [color, setColor] = useState("");
     const [fontFamily, setFontFamily] = useState("");
     const params = useParams();
+    const setCartUpdated = useContext(CartContextProvider);
 
     async function handleClick(productID, quantity, firstname, mouthPiece, age, color, fontFamily) {
         await fetch('/api/cart/add', {

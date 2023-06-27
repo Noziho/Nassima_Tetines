@@ -1,4 +1,3 @@
-import {Register} from "../pages/user/Register";
 import {Outlet} from "react-router-dom";
 import {Home} from "../pages/Home";
 

@@ -8,7 +8,6 @@ import {Cart} from "../../components/Cart/Cart";
 
 export const ProductList = () => {
     const [products, setProducts] = useState([]);
-    const [cartUpdated, setCartUpdated] = useState(false);
 
     useEffect(() => {
         async function getProducts() {
@@ -18,7 +17,7 @@ export const ProductList = () => {
 
         getProducts()
             .catch(() => console.log('Erreur lors de la récupération des produits'));
-    }, [cartUpdated]);
+    }, []);
 
     const [category, setCategory] = useState(1);
 
@@ -26,7 +25,7 @@ export const ProductList = () => {
         <>
             <Header/>
             <div className={"containerProductPage"}>
-                <Cart cartUpdated={cartUpdated} setCartUpdated={{setCartUpdated}}/>
+                <Cart />
 
                 <div id={"productListContainer"}>
                     <div id={"categoriesSelect"}>
@@ -36,7 +35,7 @@ export const ProductList = () => {
                         {
                             products
                                 .filter(product => category === 0 || product.category.id === category)
-                                .map(product => <Product key={product.id} product={product} setCartUpdated={setCartUpdated}/>)
+                                .map(product => <Product key={product.id} product={product} />)
                         }
                     </div>
                 </div>

@@ -1,10 +1,13 @@
 import './Cart.scss';
-import {useEffect, useState} from "react";
+import {useContext, useEffect, useState} from "react";
 import {CartItem} from '../CartItem/CartItem';
+import {CartContextProvider} from "../../context/CartContext";
 
-export const Cart = ({cartUpdated, setCartUpdated}) => {
+export const Cart = () => {
 
     const [CartItems, setCartItems] = useState([]);
+    const {cartUpdated, setCartUpdated} = useContext(CartContextProvider);
+
     useEffect(() => {
        async function getCart() {
            const response = await fetch('/api/cart');
@@ -21,7 +24,7 @@ export const Cart = ({cartUpdated, setCartUpdated}) => {
         <div className={"cart"}>
             <h1>Panier</h1>
             <div className={'cartItems'}>
-                {CartItems.map((cartItem) => <CartItem key={cartItem.product_id} product={cartItem.product_id} />)}
+                {CartItems.map((cartItem) => <CartItem key={cartItem.product_id} cartItem={cartItem}  />)}
             </div>
         </div>
     )
