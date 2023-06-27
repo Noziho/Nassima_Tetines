@@ -49,20 +49,17 @@ class CartController extends AbstractController
         }
 
         $cart = $sessionCartService->getCart();
-        $cartItem = $cart->getCartItem($product);
 
-        if (null === $cartItem) {
-            $cartItem = (new CartItem())
-                ->setProduct($product)
-                ->setCart($cart)
-                ->setQuantity($quantity)
-                ->setAge($age)
-                ->setColor($color)
-                ->setFontFamily($fontFamily)
-                ->setMouthPiece($mouthPiece)
-                ->setFirstName($firstname);
+        $cartItem = (new CartItem())
+            ->setProduct($product)
+            ->setCart($cart)
+            ->setQuantity($quantity)
+            ->setAge($age)
+            ->setColor($color)
+            ->setFontFamily($fontFamily)
+            ->setMouthPiece($mouthPiece)
+            ->setFirstName($firstname);
 
-        }
 
         $this->entityManager->persist($cartItem);
         $this->entityManager->flush();
