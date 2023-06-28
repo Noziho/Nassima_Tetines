@@ -8,11 +8,11 @@ export const ProductDetails = () => {
 
     const [product, setProduct] = useState([]);
     const [quantity, setQuantity] = useState(1);
-    const [firstname, setFirstname] = useState("");
-    const [mouthPiece, setMouthPiece] = useState("");
-    const [age, setAge] = useState("");
-    const [color, setColor] = useState("");
-    const [fontFamily, setFontFamily] = useState("");
+    const [firstname, setFirstname] = useState(null);
+    const [mouthPiece, setMouthPiece] = useState("Anatomique");
+    const [age, setAge] = useState("0/6 mois");
+    const [color, setColor] = useState("Rose");
+    const [fontFamily, setFontFamily] = useState("Écriture 1");
     const params = useParams();
     const setCartUpdated = useContext(CartContextProvider);
 

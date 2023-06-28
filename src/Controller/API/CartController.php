@@ -10,6 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use function PHPUnit\Framework\exactly;
 
 class CartController extends AbstractController
 {
@@ -32,8 +33,16 @@ class CartController extends AbstractController
     public function addToCart(Request $request, ProductRepository $productRepository, SessionCartService $sessionCartService): JsonResponse
     {
         $payload = json_decode($request->getContent(), true);
-        if (!isset($payload['product_id']) || !isset($payload['quantity'])) {
-            return $this->returnError('Missing parameters');
+
+        if (!isset($payload['product_id'])
+            || !isset($payload['quantity'])
+            || !isset($payload['age'])
+            || !isset($payload['color'])
+            || !isset($payload['fontFamily'])
+            || !isset($payload['mouthPiece'])
+            || !isset($payload['firstname'])
+        ) {
+            return $this->returnError('Des champs sont manquant');
         }
 
         $product = $productRepository->find((int)$payload['product_id']);
