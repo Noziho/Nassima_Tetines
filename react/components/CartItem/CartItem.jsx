@@ -1,5 +1,6 @@
 import './CarItem.scss';
 import {useEffect, useState} from "react";
+import {redirect} from "react-router-dom";
 
 export const CartItem = ({cartItem}) => {
     const [product, setProduct] = useState({});
@@ -14,6 +15,14 @@ export const CartItem = ({cartItem}) => {
         getProduct()
             .catch(() => console.log("Erreur lors de la récupération des produits pour le panier"))
     }, [])
+
+    function handleClick () {
+        const data = fetch('/api/cartItem/delete/' + cartItem.id)
+        {/** #TODO: update cartitem/cart component  **/}
+        if (data.response.ok) {
+            location.href('http://127.0.0.1/products');
+        }
+    }
     return (
         <>
             <div className={'cartItem'}>
@@ -28,6 +37,7 @@ export const CartItem = ({cartItem}) => {
                     <p>Âge: {cartItem.age}</p>
                     <p>Quantité: {cartItem.quantity}</p>
                     <p>Prix: {product.price} €</p>
+                    <button onClick={handleClick}>Supprimez</button>
                 </div>
             </div>
 

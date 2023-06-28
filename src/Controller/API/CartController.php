@@ -3,9 +3,12 @@
 namespace App\Controller\API;
 
 use App\Entity\CartItem;
+use App\Repository\CartItemRepository;
 use App\Repository\ProductRepository;
 use App\Services\SessionCartService;
 use Doctrine\ORM\EntityManagerInterface;
+use http\Env\Response;
+use PHPUnit\Util\Json;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -76,6 +79,19 @@ class CartController extends AbstractController
         $this->entityManager->refresh($cart);
 
         return $this->json($cart);
+    }
+
+    #[Route('/api/cartItem/delete/{cartItem}')]
+    public function deleteCartItem (CartItem $cartItem, CartItemRepository $cartItemRepository): JsonResponse
+    {
+        $cartItemRepository->find($cartItem);
+        $this->entityManager->remove($cartItem);
+        $this->entityManager->flush();
+
+        return $this->json([
+            'success' => true,
+            'message' => 'CartItem deleted'
+        ]);
     }
 
     public function returnError(string $message): JsonResponse

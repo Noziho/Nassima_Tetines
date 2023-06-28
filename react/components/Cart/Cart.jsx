@@ -25,6 +25,10 @@ export const Cart = () => {
             <h1>Panier</h1>
             <div className={'cartItems'}>
                 {CartItems.map((cartItem) => <CartItem key={cartItem.product_id} cartItem={cartItem}  />)}
+
+                <div>
+                    <button>Vider le panier</button>
+                </div>
             </div>
         </div>
     )
