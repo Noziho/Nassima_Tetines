@@ -20,6 +20,11 @@ export const Cart = () => {
         .catch (() => console.log('Erreur lors de la récupération du panier.'));
     }, [cartUpdated]);
 
+    function handleClick () {
+        {/** #TODO upload cart components (refresh) **/}
+        fetch('/api/cart/delete/' + CartItems.map((cartItem) => cartItem.id));
+    }
+
     return (
         <div className={"cart"}>
             <h1>Panier</h1>
@@ -27,7 +32,7 @@ export const Cart = () => {
                 {CartItems.map((cartItem) => <CartItem key={cartItem.product_id} cartItem={cartItem}  />)}
 
                 <div>
-                    <button>Vider le panier</button>
+                    <button onClick={handleClick}>Vider le panier</button>
                 </div>
             </div>
         </div>
